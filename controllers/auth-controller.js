@@ -58,8 +58,8 @@ console.log(user)
     const { accessToken, refreshToken } = tokenService.generateTokens({ _id: user._id, activated: false });
 
     await tokenService.storeRefreshToken(refreshToken, user._id);
-    res.cookie("refreshToken", refreshToken, { maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true });
-    res.cookie("accessToken", accessToken, { maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true });
+    res.cookie("refreshToken", refreshToken, { maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true,sameSite:"none", secure: true });
+    res.cookie("accessToken", accessToken, { maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true,sameSite:"none", secure: true });
     const userDto = new UserDto(user);
     res.json({ user: userDto, auth: true });
   }
@@ -100,8 +100,8 @@ console.log(user)
       return res.status(500).json({ message: "Internal error" });
     }
     //put new token in cookie
-    res.cookie("refreshToken", refreshToken, { maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true });
-    res.cookie("accessToken", accessToken, { maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true });
+    res.cookie("refreshToken", refreshToken, { maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true,sameSite:"none", secure: true });
+    res.cookie("accessToken", accessToken, { maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true,sameSite:"none", secure: true });
     //response
     const userDto = new UserDto(user);
     res.json({ user: userDto, auth: true });
