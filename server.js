@@ -11,7 +11,7 @@ const io = require("socket.io")(server);
 
 const corsOption = {
   credentials: true,
-  origin: ["http://localhost:5173"],
+  origin: ["https://roomies-i6zr.vercel.app"],
 };
 app.use(cors(corsOption));
 
